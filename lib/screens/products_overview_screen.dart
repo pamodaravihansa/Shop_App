@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
-  
-
   final List<Product> loadedProducts = [
-    
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -41,11 +38,25 @@ class ProductsOverviewScreen extends StatelessWidget {
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
-  
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('MyShop'),
+      ),
+      body: GridView.builder(
+        padding: EdgeInsets.all(10.0),
+        itemCount: loadedProducts.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+        itemBuilder: (ctx, i) => Container(),
+      ),
+    );
   }
 }
