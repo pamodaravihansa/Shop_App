@@ -12,19 +12,21 @@ class ProductsGridView extends StatelessWidget {
     final products = productsData.items;
 
     return GridView.builder(
-      padding: EdgeInsets.all(10.0),
-      itemCount: products.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-      ),
-      itemBuilder: (ctx, i) => ProductItem(
-        products[i].id,
-        products[i].title,
-        products[i].imageUrl,
-      ),
-    );
+        padding: EdgeInsets.all(10.0),
+        itemCount: products.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+        itemBuilder: (ctx, i) => ChangeNotifierProvider(
+              create: (context) => products[i] ,
+              child: ProductItem(
+                // products[i].id,
+                // products[i].title,
+                // products[i].imageUrl,
+              ),
+            ));
   }
 }
