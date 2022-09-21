@@ -12,6 +12,7 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
   final _disFocusNode = FocusNode();
+  final _imageUrlController = TextEditingController();
 
   void dispose() {
     _priceFocusNode.dispose();
@@ -51,6 +52,33 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 focusNode: _disFocusNode,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    margin: EdgeInsets.only(top: 8, right: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey),
+                    ),
+                    child: _imageUrlController.text.isEmpty
+                        ? Text('Enter a URL')
+                        : FittedBox(
+                            child: Image.network(_imageUrlController.text),
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      decoration: InputDecoration(labelText: 'Image URL'),
+                      keyboardType: TextInputType.url,
+                      textInputAction: TextInputAction.done,
+                      controller: _imageUrlController,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
