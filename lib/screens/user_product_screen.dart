@@ -1,9 +1,10 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
+
 import '../providers/products.dart';
+
+import '../widgets/user_product_item.dart';
+
 class UserProductScreen extends StatelessWidget {
   const UserProductScreen({Key key}) : super(key: key);
 
@@ -25,7 +26,7 @@ class UserProductScreen extends StatelessWidget {
         padding: EdgeInsets.all(8),
         child: ListView.builder(
           itemCount: productsData.items.length,
-          itemBuilder: (_ , i) =>  ,
+          itemBuilder: (_, i) => UserProductItem(),
         ),
       ),
     );
