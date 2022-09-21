@@ -1,10 +1,9 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 
 class EditProductScreen extends StatefulWidget {
   const EditProductScreen({Key key}) : super(key: key);
+
+  static const routeName = 'edit-products';
 
   @override
   State<EditProductScreen> createState() => _EditProductScreenState();
@@ -17,7 +16,19 @@ class _EditProductScreenState extends State<EditProductScreen> {
       appBar: AppBar(
         title: Text('Edit Products'),
       ),
-      body: Container(),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Form(
+          child: ListView(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Title'),
+                textInputAction: TextInputAction.next,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
