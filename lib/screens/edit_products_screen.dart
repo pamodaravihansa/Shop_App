@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +30,19 @@ class _EditProductScreenState extends State<EditProductScreen> {
     imageUrl: '',
   );
 
+  var _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      final productId = ModalRoute.of(context).settings.arguments as String;
+      final _editedProducts =
+          Provider.of<Products>(context, listen: false).findById(productId);
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
   void dispose() {
     _imageUrlFocusNode.removeListener(_updateImageUrl);
     _priceFocusNode.dispose();
@@ -38,6 +53,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.dispose();
   }
 
+  @override
   void initState() {
     _imageUrlFocusNode.addListener(_updateImageUrl);
     super.initState();
